@@ -16,9 +16,9 @@ $ pip install -r requirements.txt
 # Executing examples
 ```bash
 $ python examples/001.quickstart.py
-$ python examples/002.suggest-animal-names.py
-$ python examples/003.says-this-is-a-test.py
-$ python examples/004.filter-data.py
-$ python examples/005.filter-people-by-location.py
-$ python examples/006.filter-people-by-friends.py
+$ python examples/002.suggest_animal_names.py
+$ python examples/003.says_this_is_a_test.py
+$ python examples/004.filter_data.py
+$ python examples/005.filter_people_by_location.py
+$ python examples/006.filter_people_by_friends.py
 ```

@@ -1,3 +1,4 @@
 .env
 .vscode
 azure-openai-venv
+__pycache__

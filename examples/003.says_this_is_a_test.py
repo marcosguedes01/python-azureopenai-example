@@ -1,6 +1,8 @@
+import load_modules
 import os
 import openai
 from dotenv import load_dotenv
+from convert.convert_response import getResultFromResponse
 
 load_dotenv()
 
@@ -19,5 +21,5 @@ response = openai.Completion.create(
     max_tokens=7
 )
 
-result = response['choices'][0]['text'].replace('\n', '').replace(' .', '.').strip()
+result = getResultFromResponse(response)
 print(result)

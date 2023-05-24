@@ -1,6 +1,8 @@
+import load_modules
 import os
 import openai
 from dotenv import load_dotenv
+from convert.convert_response import getResultFromResponse
 
 load_dotenv()
 
@@ -21,11 +23,12 @@ Animal: Dog
 Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
 Animal: {}
 Names:""".format(animal)
+
 response = openai.Completion.create(
     engine=deployment_name,
     prompt=start_phrase,
-    max_tokens=10
-    )
+    max_tokens=30
+)
 
-result = response['choices'][0]['text'].replace('\n', '').replace(' .', '.').strip()
+result = getResultFromResponse(response)
 print(result)

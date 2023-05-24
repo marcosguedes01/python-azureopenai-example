@@ -1,6 +1,8 @@
+import load_modules
 import os
 import openai
 from dotenv import load_dotenv
+from convert.convert_response import getResultFromResponse
 
 load_dotenv()
 
@@ -16,37 +18,32 @@ people = [
     {
         "id", 1
         "name": "Mario",
-        "localization": "Recife",
-        "friendsPeopleIds" [ 2 ]
+        "localization": "Recife"
     },
     {
         "id", 2
         "name": "Antonio",
         "localization": "Recife",
-        "friendsPeopleIds" [ 3, 5 ]
     },
     {
         "id", 3
         "name": "Maria",
         "localization": "Bahia",
-        "friendsPeopleIds" [ 2, 4 ]
     },
     {
         "id", 4
         "name": "Ana",
         "localization": "Recife",
-        "friendsPeopleIds" [ 2, 3, 4 ]
     },
     {
         "id", 5
         "name": "Pedro",
         "localization": "Rio de Janeiro",
-        "friendsPeopleIds" [ 4, 5 ]
     }
 ]
     
-    return suggestions from people who might know Mario (by friendsPeopleIds) and why.
-    return a json { "id": 1, "name": "person name" } with suggested people and a text below with the justification.
+    return suggestions from people who might know Mario (by localization)
+    return in json format: { "id": 1, "name":"person name" }
 """
 
 response = openai.Completion.create(
@@ -56,5 +53,5 @@ response = openai.Completion.create(
     max_tokens=100
 )
 # print(response)
-result = response['choices'][0]['text'].replace('\n', '').replace(' .', '.').strip()
+result = getResultFromResponse(response)
 print(result)

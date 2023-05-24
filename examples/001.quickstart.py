@@ -1,6 +1,8 @@
+import load_modules
 import os
 import openai
 from dotenv import load_dotenv
+from convert.convert_response import getResultFromResponse
 
 load_dotenv()
 
@@ -14,6 +16,12 @@ deployment_name=os.getenv("AZURE_OPENAI_DEPLOYMENT_DAVINCE_NAME") #This will cor
 # Send a completion call to generate an answer
 print('Sending a test completion job')
 start_phrase = 'Write a tagline for an ice cream shop. '
-response = openai.Completion.create(engine=deployment_name, prompt=start_phrase, max_tokens=10)
-text = response['choices'][0]['text'].replace('\n', '').replace(' .', '.').strip()
-print(start_phrase+text)
+
+response = openai.Completion.create(
+    engine=deployment_name,
+    prompt=start_phrase,
+    max_tokens=20
+)
+
+result = getResultFromResponse(response)
+print(start_phrase + result)

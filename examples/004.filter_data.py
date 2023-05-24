@@ -1,6 +1,8 @@
+import load_modules
 import os
 import openai
 from dotenv import load_dotenv
+from convert.convert_response import getResultFromResponse
 
 load_dotenv()
 
@@ -19,8 +21,8 @@ response = openai.Completion.create(
     engine=deployment_name,
     prompt=prompt,
     temperature=0,
-    max_tokens=7
+    max_tokens=10
 )
 
-result = response['choices'][0]['text'].replace('\n', '').replace(' .', '.').strip()
+result = getResultFromResponse(response)
 print(result)
